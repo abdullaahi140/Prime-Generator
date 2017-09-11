@@ -17,7 +17,7 @@ class Window(QtGui.QMainWindow):
         label = QtGui.QLabel("Prime Numbers", widget)
         label.setStyleSheet("font: 30pt Proxima Nova")
 
-        label2 = QtGui.QLabel("",widget)
+        label2 = QtGui.QLabel("2",widget)
         label2.setStyleSheet("font: 20pt Proxima Nova")
         QtCore.QTimer.singleShot(1000, lambda: self.label_updater(label2))
 
@@ -30,11 +30,12 @@ class Window(QtGui.QMainWindow):
         self.show()
 
     def label_updater(self,label2):
-        p = []
-        for prime in Prime.obtain_range(100):
-            if prime is not None:
-                label2.setText(str(prime))
-
+        testnum = int(label2.text())+1
+        prime = Prime.obtain_prime(testnum)
+        while prime is None:
+            testnum += 1
+            prime = Prime.obtain_prime(testnum)
+        label2.setText(str(prime))
         QtCore.QTimer.singleShot(1000, lambda: self.label_updater(label2))
 
 def run():
