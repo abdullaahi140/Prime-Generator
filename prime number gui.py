@@ -48,5 +48,3 @@ def run():
     # timer.start(10000)
 
 run()
-
-#Having issues with updating label2
