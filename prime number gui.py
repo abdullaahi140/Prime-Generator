@@ -1,8 +1,10 @@
-from PyQt4 import QtGui, QtCore
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import *
 import sys
 import Prime
 
-class Window(QtGui.QMainWindow):
+class Window(QMainWindow):
 
     def __init__(self):
         super(Window, self).__init__()
@@ -12,18 +14,18 @@ class Window(QtGui.QMainWindow):
 
     def show_primes(self):
 
-        widget2 = QtGui.QWidget()
+        widget2 = QWidget()
         
-        label = QtGui.QLabel("Prime Numbers", widget2)
+        label = QLabel("Prime Numbers", widget2)
         label.setStyleSheet("font: 30pt Proxima Nova")
 
-        label2 = QtGui.QLabel("2",widget2)
+        label2 = QLabel("2",widget2)
         label2.setStyleSheet("font: 20pt Proxima Nova")
-        QtCore.QTimer.singleShot(1000, lambda: self.label_updater(label2))
+        QTimer.singleShot(1000, lambda: self.label_updater(label2))
 
-        v_layout = QtGui.QVBoxLayout(widget2)
-        v_layout.addWidget(label,0,QtCore.Qt.AlignLeft)
-        v_layout.addWidget(label2,0,QtCore.Qt.AlignCenter)
+        v_layout = QVBoxLayout(widget2)
+        v_layout.addWidget(label,0,Qt.AlignLeft)
+        v_layout.addWidget(label2,0,Qt.AlignCenter)
         widget2.setLayout(v_layout)
 
         self.setCentralWidget(widget2)
@@ -36,10 +38,10 @@ class Window(QtGui.QMainWindow):
             testnum += 1
             prime = Prime.obtain_prime(testnum)
         label2.setText(str(prime))
-        QtCore.QTimer.singleShot(1000, lambda: self.label_updater(label2))
+        QTimer.singleShot(1000, lambda: self.label_updater(label2))
 
 def run():
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     GUI = Window()
     sys.exit(app.exec_())
 

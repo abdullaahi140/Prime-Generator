@@ -13,5 +13,4 @@ def obtain_prime(num):
 def obtain_range(num):
 
     primeGenerator = (obtain_prime(num) for num in range(3,num))
-    
     return primeGenerator
